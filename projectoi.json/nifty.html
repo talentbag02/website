@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+
+<style>
+    body{
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .putCallTable{
+        display: flex;
+        justify-content: space-evenly;
+    }
+    .table{
+        font-size: 14px;
+        text-align: center;
+        margin: 0 auto;
+    }
+
+    .table th{
+        font-size: 16px;
+        font-weight: 400;
+        color: #fff;
+        background: darkblue;
+        padding: 10px;
+    }
+
+    .table tr{
+        font-weight: 300;
+    }
+
+
+    .uniqueOne .title{
+        text-align: center;
+        color: darkblue;
+    }
+
+    .uniqueTwo .title{
+        text-align: center;
+        color: darkblue;
+    }
+
+    .title{
+        text-align: center;
+        color: darkblue;
+    }
+   
+    .unique{
+        display: none;
+    }
+
+    #showStock{
+        width: 80%;
+        margin: 100px auto 50px;
+        text-align: center;
+    }
+
+    #showStock a{
+        cursor: pointer;
+    }
+
+    #showStock a:hover{
+        color:blue;
+    }
+
+    /* #clickData th{
+        padding: 0;
+    } */
+    
+    tr.highlight-yellow {
+        background: yellow
+        
+    }
+
+table tr:nth-of-type(3),table tr:nth-of-type(2),table tr:nth-of-type(4)
+,table tr:nth-of-type(5)
+{background: yellow}
+ 
+table.index tr:nth-child(n+10) {
+  display: none;
+}
+
+
+
+</style>
+<body>
+
+<h2 class="title">Nifty<span class=" nifty-spot-price">&nbsp;</span></h2>
+    <div class="putCallTable">
+        <div class="uniqueOne">
+             
+            <h2 class="title">Volume</h2>
+            <table id="tableIOne" class="index table">
+                <tr>
+                       <th>Symbol-strike</th>
+                   <th>OI</th>
+                    <th>OI contracts</th> 
+                   
+                    <th>OI Change %</th>
+                    <!-- <th>Open-interest</th>
+                    <th>Open-interest-contracts</th>
+                    <th>Open-interest-change</th>-->
+                    <th>Volume</th>
+                    <!--<th>Underlying-value</th>
+                    <th>Volumes</th>
+                    <th>Volumes-in-contracts</th>
+                    <th>Open-interest-turnover</th>
+                    <th>Notional-turnover</th>
+                    <th>Premium</th>
+                    <th>Premium-turnover</th>
+                    <th>Symbol</th>
+                    <th>Type</th> -->
+                </tr>
+            </table>
+        </div>
+        <div class="uniqueTwo">
+            <h2 class="title">OI %</h2>
+            <table id="tableITwo" class="index table">
+                <tr>
+                      <th>Symbol-strike</th>
+                   <th>OI</th>
+                    <th>OI contracts</th> 
+                   
+                    <th>OI Change %</th>
+                    <!-- <th>Open-interest</th>
+                    <th>Open-interest-contracts</th>
+                    <th>Open-interest-change</th>-->
+                    <th>Volume</th>
+                    <!--<th>Underlying-value</th>
+                    <th>Volumes</th>
+                    <th>Volumes-in-contracts</th>
+                    <th>Open-interest-turnover</th>
+                    <th>Notional-turnover</th>
+                    <th>Premium</th>
+                    <th>Premium-turnover</th>
+                    <th>Symbol</th>
+                    <th>Type</th> -->
+                </tr>
+            </table>
+        </div>
+    </div>
+    <h2 class="title">BNifty<span class="index bifty-spot-price">&nbsp;</span></h2>
+    <div class="putCallTable">
+        <div class="uniqueOne">
+            <h2 class="title">Volume</h2></h2>
+            <table id="tableIOneB" class="index table">
+                <tr>
+                     
+                   <th>Symbol-strike</th>
+                   <th>OI</th>
+                    <th>OI contracts</th> 
+                   
+                    <th>OI Change %</th>
+                    <!-- <th>Open-interest</th>
+                    <th>Open-interest-contracts</th>
+                    <th>Open-interest-change</th>-->
+                    <th>Volume</th>
+                    <!--<th>Underlying-value</th>
+                    <th>Volumes</th>
+                    <th>Volumes-in-contracts</th>
+                    <th>Open-interest-turnover</th>
+                    <th>Notional-turnover</th>
+                    <th>Premium</th>
+                    <th>Premium-turnover</th>
+                    <th>Symbol</th>
+                    <th>Type</th> -->
+                </tr>
+            </table>
+        </div>
+        <div class="uniqueTwo">
+            <h2 class="title">OI %</h2>
+            <table id="tableITwoB" class="index table">
+                <tr>
+                     <th>Symbol-strike</th>
+                   <th>OI</th>
+                    <th>OI contracts</th> 
+                   
+                    <th>OI Change %</th>
+                    <!-- <th>Open-interest</th>
+                    <th>Open-interest-contracts</th>
+                    <th>Open-interest-change</th>-->
+                    <th>Volume</th>
+                    <!--<th>Underlying-value</th>
+                    <th>Volumes</th>
+                    <th>Volumes-in-contracts</th>
+                    <th>Open-interest-turnover</th>
+                    <th>Notional-turnover</th>
+                    <th>Premium</th>
+                    <th>Premium-turnover</th>
+                    <th>Symbol</th>
+                    <th>Type</th> -->
+                </tr>
+            </table>
+        </div>
+    </div>
+   
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+ 
+    <script>
+    
+     
+
+    
+    var data_Icall_array = [];
+     var data_Iput_array = [];
+      nfObject = new Intl.NumberFormat('en-US');
+
+            var staticUrl = 'https://www.bloombergquint.com/feapi/markets/options?option-type=call&security-type=index&sort-by=contract&limit=200';
+$.getJSON(staticUrl, function(data_Icall) {
+    //console.log(data_call);
+   data_Icall_array = data_Icall;
+    
+    var staticUrl_n = 'https://www.bloombergquint.com/feapi/markets/options?option-type=put&security-type=index&sort-by=contract&limit=200';
+  
+   $.getJSON(staticUrl_n, function(data_Iput) {
+    //console.log("hi");
+  data_Iput_array = data_Iput;
+  //console.log(data_put_array);
+  getIndexCData();
+ 
+});
+     
+   // console.log(data_call_array);
+       //
+       
+      
+});
+
+          
+
+    
+        
+   
+
+       function getIndexCData(){
+            var count = 1;
+             var countB = 1;
+                let callData = data_Icall_array;
+                let putData = data_Iput_array;
+            
+                let arrayAllCData = callData.options;
+                let arrayAllPData = putData.options;
+                
+                var combineData = arrayAllCData.concat(arrayAllPData);
+                
+                //console.log(callDataOpt);
+                 combineData.sort(function(a, b){
+                   var x = a["expiry-date"]; var y = b["expiry-date"];
+                    return ((x < y) ? -1 : ((x > y) ? 1 : 0));
+                     
+                });
+            
+                var date_current = combineData[0]["expiry-date"];
+                var arrayAllExpiryData = [];
+                 
+                  for (let y = 0; y < combineData.length; y++){
+                    
+                   
+                   if(combineData[y]["expiry-date"] == date_current ){
+                       //console.log(arrayAllData[y]);
+                       arrayAllExpiryData.push(combineData[y]);
+                   } 
+                   
+                   }
+            
+                 arrayAllExpiryData.sort(function(a, b){
+                   var x = a["volumes"]; var y = b["volumes"];
+                    return ((x > y) ? -1 : ((x < y) ? 1 : 0));
+                     
+                });
+                
+                for (let y = 0; y < arrayAllExpiryData.length; y++){
+                    
+                   
+                    
+                    if (arrayAllExpiryData[y]["symbol"] == "NIFTY 50"){
+                    var print = $('<tr><td>' + arrayAllExpiryData[y]["strike-price"]+ '&nbsp;'+ arrayAllExpiryData[y]["type"] + '</td><td>' + nfObject.format(arrayAllExpiryData[y]["open-interest"])+ '</td><td>' + nfObject.format(arrayAllExpiryData[y]["open-interest-in-contracts"]) +'</td><td>'  + arrayAllExpiryData[y]["open-interest-change-percentage"] + '</td><td>'+ nfObject.format(arrayAllExpiryData[y]["volumes"]) +'</td></tr>');
+                    $('#tableIOne').append(print);
+                     
+                     
+                         if (count == 1){
+                       count = 2;
+                         $('.nifty-spot-price').append(arrayAllExpiryData[y]["spot-price"]);
+                        }
+                    }
+                    
+                    else{
+                        var print = $('<tr><td>' + arrayAllExpiryData[y]["strike-price"] + '&nbsp;'+ arrayAllExpiryData[y]["type"] + '</td><td>' + nfObject.format(arrayAllExpiryData[y]["open-interest"]) + '</td><td>' + nfObject.format(arrayAllExpiryData[y]["open-interest-in-contracts"]) +'</td><td>'  + arrayAllExpiryData[y]["open-interest-change-percentage"] + '</td><td>'+ nfObject.format(arrayAllExpiryData[y]["volumes"])+'</td></tr>');
+                    $('#tableIOneB').append(print);
+                    //console.log(arrayAllDataN[y]["spot-price"]);
+                     if (countB == 1){
+                         countB = 2;
+                         $('.bifty-spot-price').append(arrayAllExpiryData[y]["spot-price"]);
+                        }
+                    }
+                
+                }
+                
+                 arrayAllExpiryData.sort(function(a, b){
+                   var x = a["open-interest-change-percentage"]; var y = b["open-interest-change-percentage"];
+                    return ((x > y) ? -1 : ((x < y) ? 1 : 0));
+                     
+                });
+                
+                for (let y = 0; y < arrayAllExpiryData.length; y++){
+                    
+                   
+                    
+                    if (arrayAllExpiryData[y]["symbol"] == "NIFTY 50"){
+                    var print = $('<tr><td>' + arrayAllExpiryData[y]["strike-price"]+ '&nbsp;'+ arrayAllExpiryData[y]["type"] + '</td><td>' + nfObject.format(arrayAllExpiryData[y]["open-interest"]) + '</td><td>' + nfObject.format(arrayAllExpiryData[y]["open-interest-in-contracts"]) +'</td><td>'  + arrayAllExpiryData[y]["open-interest-change-percentage"] + '</td><td>'+ nfObject.format(arrayAllExpiryData[y]["volumes"]) +'</td></tr>');
+                    $('#tableITwo').append(print);
+                     
+                     
+                         if (count == 1){
+                       count = 2;
+                         $('.nifty-spot-price').append(arrayAllExpiryData[y]["spot-price"]);
+                        }
+                    }
+                    
+                    else{
+                        var print = $('<tr><td>' + arrayAllExpiryData[y]["strike-price"] + '&nbsp;'+ arrayAllExpiryData[y]["type"] + '</td><td>' + nfObject.format(arrayAllExpiryData[y]["open-interest"]) + '</td><td>' + nfObject.format(arrayAllExpiryData[y]["open-interest-in-contracts"]) +'</td><td>'  + arrayAllExpiryData[y]["open-interest-change-percentage"] + '</td><td>'+ nfObject.format(arrayAllExpiryData[y]["volumes"]) +'</td></tr>');
+                    $('#tableITwoB').append(print);
+                    //console.log(arrayAllDataN[y]["spot-price"]);
+                     if (countB == 1){
+                         countB = 2;
+                         $('.bifty-spot-price').append(arrayAllExpiryData[y]["spot-price"]);
+                        }
+                    }
+                
+                }
+        
+
+       }
+
+    
+    </script>
+</body>
+</html>

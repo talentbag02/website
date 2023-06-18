@@ -1,0 +1,988 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+
+<style>
+    body{
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .putCallTable{
+        display: flex;
+        justify-content: space-evenly;
+    }
+    .table{
+        font-size: 14px;
+        text-align: center;
+        margin: 0 auto;
+    }
+
+    .table th{
+        font-size: 14px;
+        font-weight: 300;
+        color: darkblue;
+        background: #ebebff;
+        padding: 6px;
+       
+    }
+
+    .table tr{
+        font-weight: 300;
+       
+    }
+    
+
+       .table td{
+        
+        padding: 2px;
+    }
+
+
+    .uniqueOne .title{
+        text-align: center;
+        color: darkblue;
+    }
+
+    .uniqueTwo .title{
+        text-align: center;
+        color: darkblue;
+    }
+
+    .title{
+        text-align: center;
+        color: darkblue;
+        margin-bottom:5%;
+    }
+    
+    
+   
+    .unique{
+        display: none;
+    }
+
+    #showStock{
+        width: 80%;
+        margin: 100px auto 50px;
+        text-align: center;
+    }
+
+    #showStock a{
+        cursor: pointer;
+    }
+
+    #showStock a:hover{
+        color:blue;
+    }
+
+    /* #clickData th{
+        padding: 0;
+    } */
+    
+   table#VolumeStocks tr {
+        background: white;
+        
+    }
+    
+     tr.highlight-yellow {
+         background-color:yellow;
+     }
+  
+    
+    table#VolumeStocks tr.highlight-yellow,#VolumeCStocks tr.highlight-yellow  {
+        background: blue;
+       color:#fff;
+    }
+
+
+
+
+table tr.highlight-blue
+{background: darkblue !important;
+color:#fff;}
+
+
+ #tableOne  tr.highlight-blue, #tableTwo  tr.highlight-blue
+{background:blue !important;}
+ 
+
+table.reliance tr:nth-of-type(3),table.hdfcbank tr:nth-of-type(3),table.reliance tr:nth-of-type(2),table.hdfcbank tr:nth-of-type(2) 
+{background: yellow;}
+
+table.reliance tr:nth-child(n+7) {
+  display: none;
+}
+ 
+table.index tr:nth-of-type(3),table.index tr:nth-of-type(2),table.index tr:nth-of-type(4)
+,table.index tr:nth-of-type(5)
+{background: yellow;}
+ 
+table.index tr:nth-child(n+10) {
+  display: none;
+}
+
+
+
+</style>
+<body>
+    
+    <div class="putCallTable">
+       
+         <div class="uniqueTwo">
+              <h2 class="title main">Nifty(weekly)<span class=" nifty-spot-price">&nbsp;</span></h2>
+            <h2 class="title">Open Interests</h2>
+            <table id="tableITwo" class="index table">
+                <tr>
+                    <th>Expiry Data</th>
+                    <th>Strike</th>
+                   <th>Open Interests</th>
+                    <th>OI contracts</th> 
+                   
+                    <th>OI %</th>
+                    <!-- <th>Open-interest</th>
+                    <th>Open-interest-contracts</th>
+                    <th>Open-interest-change</th>-->
+                    <th>Volume</th>
+                    <!--<th>Underlying-value</th>
+                    <th>Volumes</th>
+                    <th>Volumes-in-contracts</th>
+                    <th>Open-interest-turnover</th>
+                    <th>Notional-turnover</th>
+                    <th>Premium</th>
+                    <th>Premium-turnover</th>
+                    <th>Symbol</th>
+                    <th>Type</th> -->
+                </tr>
+            </table>
+        </div>
+        <div class="uniqueTwo">
+               <h2 class="title mainB">BNifty(weekly)<span class="index bifty-spot-price">&nbsp;</span></h2>
+            <h2 class="title">Open Interests</h2>
+            <table id="tableITwoB" class="index table">
+                <tr>
+                    <th>Expiry Data</th>
+                   <th>Strike</th>
+                   <th>Open Interests</th>
+                    <th>OI contracts</th> 
+                   
+                    <th>OI %</th>
+                    <!-- <th>Open-interest</th>
+                    <th>Open-interest-contracts</th>
+                    <th>Open-interest-change</th>-->
+                    <th>Volume</th>
+                    <!--<th>Underlying-value</th>
+                    <th>Volumes</th>
+                    <th>Volumes-in-contracts</th>
+                    <th>Open-interest-turnover</th>
+                    <th>Notional-turnover</th>
+                    <th>Premium</th>
+                    <th>Premium-turnover</th>
+                    <th>Symbol</th>
+                    <th>Type</th> -->
+                </tr>
+            </table>
+        </div>
+    </div>
+
+
+
+    
+   
+     
+        <div class="putCallTable">
+          
+            <div class="uniqueOne">
+                <h2 class="title">Reliance&nbsp;<span class="reliance-spot"></span></h2>
+            <h2 class="title">Open Interests</h2>
+            <table id="RelianceTwo" class="reliance table">
+           
+            </table>
+        </div>
+        <div class="uniqueOne">
+             <h2 class="title">HDFCBANK&nbsp;<span class="hdfc-spot"></span></h2>
+            <h2 class="title">Open Interests</h2>
+            <table id="HdfcTwo" class="hdfcbank table">
+           
+            </table>
+        </div>
+        
+    </div>
+ 
+    <div class="putCallTable">
+        <div class="uniqueOne">
+            <h2 class="title">Volume Heavy</h2>
+            <table id="VolumeStocks" class="table">
+                <tr>
+                     <th>Month</th>
+                    <th>Symbol</th>
+                    <th>Strike</th>
+                    <!-- <th>Exipry-date</th> -->
+                     <th>Type</th>
+                    <th>Spot Price</th>
+                    <th>Open Interests</th>
+                    
+                    <th> OI change</th>
+                     <th>OI Change %</th>
+                  <th>Volumes</th>
+                    <!-- <th>Open-interest</th>
+                    <th>Open-interest-contracts</th>
+                    <th>Open-interest-change</th>-->
+                   
+                    <!--<th>Underlying-value</th>
+                    <th>Volumes</th>
+                    <th>Volumes-in-contracts</th>
+                    <th>Open-interest-turnover</th>
+                    <th>Notional-turnover</th>
+                    <th>Premium</th>
+                    <th>Premium-turnover</th>
+                    <th>Symbol</th>
+                    <th>Type</th> -->
+                </tr>
+            </table>
+        </div>
+        
+    </div>
+    
+        <div class="putCallTable">
+        <div class="uniqueOne">
+            <h2 class="title">Call Data</h2>
+            <table id="tableOne" class="table">
+                <tr>
+                     <th>Month</th>
+                     <th>Symbol</th>
+                     <th>Strike</th>
+                    <!-- <th>Exipry-date</th> -->
+                   
+                    <th>Spot-price</th>
+                  <th>Volumes</th>
+                    <!-- <th>Open-interest</th>
+                    <th>Open-interest-contracts</th>
+                    <th>Open-interest-change</th>-->
+                    <th>OI Change %</th>
+                    <!--<th>Underlying-value</th>
+                    <th>Volumes</th>
+                    <th>Volumes-in-contracts</th>
+                    <th>Open-interest-turnover</th>
+                    <th>Notional-turnover</th>
+                    <th>Premium</th>
+                    <th>Premium-turnover</th>
+                    <th>Symbol</th>
+                    <th>Type</th> -->
+                </tr>
+            </table>
+        </div>
+        <div class="uniqueTwo">
+            <h2 class="title">Put Data</h2>
+            <table id="tableTwo" class="table">
+                <tr>
+                    <th>Month</th>
+                    <th>Symbol</th>
+                     <th>Strike</th>
+                    <!-- <th>Exipry-date</th> -->
+                    
+                    <th>Spot-price</th> 
+                   <th>Volumes</th>
+                    <!-- <th>Open-interest</th>
+                    <th>Open-interest-contracts</th>
+                    <th>Open-interest-change</th>-->
+                    <th>OI Change %</th>
+                    <!--<th>Underlying-value</th>
+                    <th>Volumes</th>
+                    <th>Volumes-in-contracts</th>
+                    <th>Open-interest-turnover</th>
+                    <th>Notional-turnover</th>
+                    <th>Premium</th>
+                    <th>Premium-turnover</th>
+                    <th>Symbol</th>
+                    <th>Type</th> -->
+                </tr>
+            </table>
+        </div>
+    </div>
+
+
+    <div class="putCallTable">
+        <div class="uniqueOne">
+             <h2 class="title main">Nifty(monthly)<span class=" nifty-spot-price">&nbsp;</span></h2>
+            <h2 class="title">Open Interests</h2>
+            <table id="tableIOne" class="index table">
+                <tr>
+                    <th>Expiry Data</th>
+                       <th>Strike</th>
+                   <th>Open Interests</th>
+                    <th>OI contracts</th> 
+                   
+                    <th>OI %</th>
+                    <!-- <th>Open-interest</th>
+                    <th>Open-interest-contracts</th>
+                    <th>Open-interest-change</th>-->
+                    <th>Volume</br>(in contracts)</th>
+                    <!--<th>Underlying-value</th>
+                    <th>Volumes</th>
+                    <th>Volumes-in-contracts</th>
+                    <th>Open-interest-turnover</th>
+                    <th>Notional-turnover</th>
+                    <th>Premium</th>
+                    <th>Premium-turnover</th>
+                    <th>Symbol</th>
+                    <th>Type</th> -->
+                </tr>
+            </table>
+        </div>
+         <div class="uniqueOne">
+              <h2 class="title mainB">BNifty(monthly)<span class="index bifty-spot-price">&nbsp;</span></h2>
+            <h2 class="title">Open Interests</h2></h2>
+            <table id="tableIOneB" class="index table">
+                <tr>
+                     <th>Expiry Data</th>
+                   <th>Strike</th>
+                   <th>Open Interests</th>
+                    <th>OI contracts</th> 
+                   
+                    <th>OI %</th>
+                    <!-- <th>Open-interest</th>
+                    <th>Open-interest-contracts</th>
+                    <th>Open-interest-change</th>-->
+                    <th>Volume</br>(in contracts)</th>
+                    <!--<th>Underlying-value</th>
+                    <th>Volumes</th>
+                    <th>Volumes-in-contracts</th>
+                    <th>Open-interest-turnover</th>
+                    <th>Notional-turnover</th>
+                    <th>Premium</th>
+                    <th>Premium-turnover</th>
+                    <th>Symbol</th>
+                    <th>Type</th> -->
+                </tr>
+            </table>
+        </div>
+       
+    </div>
+    <div class="putCallTable">
+          
+          <div class="uniqueTwo">
+              <h2 class="title">Reliance&nbsp;<span class="reliance-spot"></span></h2>
+            <h2 class="title">Volumes in Contract</h2>
+            <table id="RelianceOne" class="reliance table">
+                
+            </table>
+        </div>
+        
+          <div class="uniqueTwo">
+              <h2 class="title">HDFCBANK&nbsp;<span class="hdfc-spot"></span></h2>
+            <h2 class="title">Volumes in Contract</h2>
+            <table id="HdfcOne" class="hdfcbank table">
+                
+            </table>
+        </div>
+    
+       
+    </div>
+   
+    
+        
+         
+<!--
+    <div id="showStock"></div>
+    <div class="allData">
+        <table class="table" id ="clickData">
+          
+        </table>
+         
+            
+        
+    </div>
+-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+ 
+    <script>
+
+var dt = new Date();
+var time = dt.getHours();
+
+    
+/*Stocks Data*/     
+
+
+    
+    var data_call_array = [];
+     var data_put_array = [];
+
+            var staticUrl = 'https://www.bloombergquint.com/feapi/markets/options?option-type=call&security-type=stock&sort-by=contract&limit=200';
+$.getJSON(staticUrl, function(data_call) {
+    //console.log(data_call);
+   data_call_array = data_call;
+    
+    var staticUrl_n = 'https://www.bloombergquint.com/feapi/markets/options?option-type=put&security-type=stock&sort-by=contract&limit=200';
+  
+   $.getJSON(staticUrl_n, function(data_put) {
+    //console.log("hi");
+  data_put_array = data_put;
+  //console.log(data_put_array);
+  getCallData();
+   
+       showClickData();
+});
+     
+   // console.log(data_call_array);
+       //
+       
+        
+});
+
+          
+
+  /*Index Data */
+  
+   var data_Icall_array = [];
+     var data_Iput_array = [];
+     
+
+            var staticUrl = 'https://www.bloombergquint.com/feapi/markets/options?option-type=call&security-type=index&sort-by=contract&limit=200';
+$.getJSON(staticUrl, function(data_Icall) {
+    //console.log(data_call);
+   data_Icall_array = data_Icall;
+    
+    var staticUrl_n = 'https://www.bloombergquint.com/feapi/markets/options?option-type=put&security-type=index&sort-by=contract&limit=200';
+  
+   $.getJSON(staticUrl_n, function(data_Iput) {
+    //console.log("hi");
+  data_Iput_array = data_Iput;
+  //console.log(data_put_array);
+  getIndexCData();
+ 
+});
+
+});    
+    
+    /* End Index Data */
+    
+    
+    
+    /*Index Code*/
+    
+    
+     function getIndexCData(){
+            var count = 1;
+             var countB = 1;
+                let callData = data_Icall_array;
+                let putData = data_Iput_array;
+            
+                let arrayAllCData = callData.options;
+                let arrayAllPData = putData.options;
+                
+                var combineData = arrayAllCData.concat(arrayAllPData);
+                
+                //console.log(callDataOpt);
+                 combineData.sort(function(a, b){
+                   var x = a["expiry-date"]; var y = b["expiry-date"];
+                    return ((x < y) ? -1 : ((x > y) ? 1 : 0));
+                     
+                });
+                //console.log(data_Iput_array);
+                var date_current = combineData[0]["expiry-date"];
+                /*var date_current = "2020-12-31T00:00:00+05:30"*/
+                var date_month = combineData[combineData.length-1]["expiry-date"];
+               
+                var arrayAllExpiryData = [];
+                 var arrayAllMExpiryData = [];
+                 
+                  for (let y = 0; y < combineData.length; y++){
+                    
+                   
+                   if(combineData[y]["expiry-date"] == date_current ){
+                       //console.log(arrayAllData[y]);
+                       arrayAllExpiryData.push(combineData[y]);
+                   } 
+                   
+                   if(combineData[y]["expiry-date"] == date_month ){
+                       //console.log(arrayAllData[y]);
+                       arrayAllMExpiryData.push(combineData[y]);
+                   } 
+                   
+                   }
+            
+                 arrayAllMExpiryData.sort(function(a, b){
+                   var x = a["open-interest"]; var y = b["open-interest"];
+                    return ((x > y) ? -1 : ((x < y) ? 1 : 0));
+                     
+                });
+                
+                //console.log(arrayAllMExpiryData);
+                for (let y = 0; y < arrayAllMExpiryData.length; y++){
+                    
+                   
+                    
+                    if (arrayAllMExpiryData[y]["symbol"] == "NIFTY 50"){
+                    var print = $('<tr><td>' + '&nbsp;' + arrayAllMExpiryData[y]["expiry-date"].slice(5,10) + '</td><td>' +  arrayAllMExpiryData[y]["strike-price"]+ '&nbsp;'+ arrayAllMExpiryData[y]["type"]  + '&nbsp;' +  '</td><td>' + nfObject.format(arrayAllMExpiryData[y]["open-interest"])+ '</td><td>' + nfObject.format(arrayAllMExpiryData[y]["open-interest-in-contracts"]) +'</td><td>'  + arrayAllMExpiryData[y]["open-interest-change-percentage"] + '</td><td>'+ nfObject.format(arrayAllMExpiryData[y]["volumes"]) +'</td></tr>');
+                    $('#tableIOne').append(print);
+                     
+                     
+                         if (count == 1){
+                       count = 2;
+                         $('.nifty-spot-price').append(arrayAllMExpiryData[y]["spot-price"]);
+                        }
+                    }
+                    
+                    else{
+                        var print = $('<tr><td>' + '&nbsp;' + arrayAllMExpiryData[y]["expiry-date"].slice(5,10) + '</td><td>' +  arrayAllMExpiryData[y]["strike-price"]+ '&nbsp;'+ arrayAllMExpiryData[y]["type"] + '&nbsp;'+  '</td><td>' + nfObject.format(arrayAllMExpiryData[y]["open-interest"]) + '</td><td>' + nfObject.format(arrayAllMExpiryData[y]["open-interest-in-contracts"]) +'</td><td>'  + arrayAllMExpiryData[y]["open-interest-change-percentage"] + '</td><td>'+ nfObject.format(arrayAllMExpiryData[y]["volumes"])+'</td></tr>');
+                    $('#tableIOneB').append(print);
+                    //console.log(arrayAllDataN[y]["spot-price"]);
+                     if (countB == 1){
+                         countB = 2;
+                         $('.bifty-spot-price').append(arrayAllMExpiryData[y]["spot-price"]);
+                        }
+                    }
+                
+                }
+                
+                 arrayAllExpiryData.sort(function(a, b){
+                   var x = a["open-interest"]; var y = b["open-interest"];
+                    return ((x > y) ? -1 : ((x < y) ? 1 : 0));
+                     
+                });
+                
+                for (let y = 0; y < arrayAllExpiryData.length; y++){
+                    
+                   
+                    
+                    if (arrayAllExpiryData[y]["symbol"] == "NIFTY 50"){
+                    var print = $('<tr><td>' + '&nbsp;' + arrayAllExpiryData[y]["expiry-date"].slice(5,10) + '</td><td>' + arrayAllExpiryData[y]["strike-price"]+ '&nbsp;'+ arrayAllExpiryData[y]["type"] + '&nbsp;'+ '</td><td>' + nfObject.format(arrayAllExpiryData[y]["open-interest"]) + '</td><td>' + nfObject.format(arrayAllExpiryData[y]["open-interest-in-contracts"]) +'</td><td>'  + arrayAllExpiryData[y]["open-interest-change-percentage"] + '</td><td>'+ nfObject.format(arrayAllExpiryData[y]["volumes"]) +'</td></tr>');
+                    $('#tableITwo').append(print);
+                     
+                     
+                         if (count == 1){
+                       count = 2;
+                         $('.nifty-spot-price').append(arrayAllExpiryData[y]["spot-price"]);
+                        }
+                    }
+                    
+                    else{
+                        var print = $('<tr><td>' + '&nbsp;' + arrayAllExpiryData[y]["expiry-date"].slice(5,10) + '</td><td>' + arrayAllExpiryData[y]["strike-price"] + '&nbsp;'+ arrayAllExpiryData[y]["type"]  +  '</td><td>' + nfObject.format(arrayAllExpiryData[y]["open-interest"]) + '</td><td>' + nfObject.format(arrayAllExpiryData[y]["open-interest-in-contracts"]) +'</td><td>'  + arrayAllExpiryData[y]["open-interest-change-percentage"] + '</td><td>'+ nfObject.format(arrayAllExpiryData[y]["volumes"]) +'</td></tr>');
+                    $('#tableITwoB').append(print);
+                    //console.log(arrayAllDataN[y]["spot-price"]);
+                     if (countB == 1){
+                         countB = 2;
+                         $('.bifty-spot-price').append(arrayAllExpiryData[y]["spot-price"]);
+                        }
+                    }
+                
+                }
+        
+
+       }
+    
+    
+    
+    
+    /* End Index Code */
+    
+    
+    
+        
+        let uniqueSymbolCall = [];
+        let uniqueSymbolPut = [];
+        let arrayCallData;
+        let arrayPutData;
+        let arrayAllData;
+        let unique1;
+        let unique2;
+        let unique;
+        let showArray;
+        let uniqueresultcall = [];
+         let uniqueresultput = [];
+        
+        
+
+
+   
+
+       function getCallData(){
+            
+         
+                let callData = data_call_array;
+            //console.log(callData);
+              //   console.log(callData);
+                let callDataOpt = callData.options;
+                //console.log(callDataOpt);
+                arrayCallData = callDataOpt;
+                // console.log(arrayCallData);
+
+                let lenCallData = arrayCallData.length;
+                // console.log(arrayCallData[0]);
+                for (let i = 0; i < lenCallData; i++){
+                    // console.log(arrayCallData[0][i]);
+                   
+                        uniqueSymbolCall.push(arrayCallData[i]["symbol"]);
+                    
+                
+                    uniqueresultcall = uniqueSymbolCall.filter(function(e) {
+                 return uniqueSymbolCall.indexOf(e) == uniqueSymbolCall.lastIndexOf(e);
+                });
+                
+                
+                // console.log(uniqueSymbolCall);
+                // console.log(uniqueSymbolCall.length);
+        }
+
+        getPutData();
+
+        arrayAllData = arrayCallData.concat(arrayPutData);
+        // console.log(arrayAllData);
+    
+        let arr1 = uniqueSymbolCall;
+        let arr2 = uniqueSymbolPut;
+        let arr5  = uniqueresultcall;
+        let arr4 = uniqueresultput;
+
+        unique1 = arr5.filter((o) => arr2.indexOf(o) === -1);
+        // console.log(unique1);
+
+        let arr3 = arr1.concat(arr2);
+        // console.log(arr3);
+
+        let uniqueArr3 = [...new Set(arr3)];
+        //console.log(uniqueArr3);
+
+        showArray = uniqueArr3;
+
+        let myClass;
+        let x;
+        /*for (x = 0; x < showArray.length; x++){
+            myClass = document.getElementsByClassName(`${showArray[x]}`);
+            let value = `<a  onclick="myFunction('${showArray[x]}')" class="${showArray[x]}"> ${showArray[x]} </a>`;
+            $('#showStock').append(value + " &nbsp; &nbsp;");
+            // await showClickData(showArray[x]);
+            // myFunction(showArray[x]);
+        }*/
+
+        // $(myClass).click(myFunction(showArray[x]));
+
+
+
+
+        for( let m = 0; m < unique1.length; m++){
+            details(unique1[m],"call");
+        }
+    
+        unique2 = arr4.filter((o) => arr1.indexOf(o) === -1);
+        //console.log(arr4);
+        //console.log(arr1);
+        //console.log(unique2);
+        for(let n = 0; n < unique2.length; n++){
+             details(unique2[n],"put");
+        }
+
+        unique = unique1.concat(unique2);
+        // console.log(unique);
+        
+       
+
+        for ( let o = 0; o < unique.length; o++){
+          allDetails(unique[o]);        
+            // unique[o].addEvenetListener('click',allDetails(o))
+        }
+      
+       }
+       
+       
+     
+
+
+
+     function getPutData(){
+     
+            let putData = data_put_array;
+            
+            let putDataOpt = putData.options;
+            
+            //console.log(callDataOpt);
+            arrayPutData = putDataOpt;
+            // console.log(arrayPutData);
+
+            let lenPutData = arrayPutData.length;
+            
+         
+            
+            for (let i = 0; i < lenPutData; i++){
+                
+                
+                   
+                    uniqueSymbolPut.push(arrayPutData[i]["symbol"]);
+               
+            }
+            
+            
+            uniqueresultput = uniqueSymbolPut.filter(function(e) {
+                 return uniqueSymbolPut.indexOf(e) == uniqueSymbolPut.lastIndexOf(e);
+                });
+                
+         
+        
+       }
+
+
+       let callDataArray = [];
+       let putDataArray = [];
+       let allDataArray = [];
+       nfObject = new Intl.NumberFormat('en-US');
+
+
+       function details(getInput,type){
+            let mainArray = arrayCallData;
+            let mainArray2 = arrayPutData;
+            let uniqueFirst = unique1;
+            let uniqueTwo = unique2;
+            let uniqueFinal = unique;
+        
+            //console.log("hi");
+            //console.log(unique);
+            //console.log(unique1);
+            //console.log(unique2);
+            //console.log(getInput);
+            //console.log("hii");
+            //console.log(mainArray2);
+            //console.log(uniqueTwo);
+
+            if (type == "call"){                
+            for (let k = 0; k < mainArray.length; k++){
+                if(mainArray[k]["symbol"] == getInput){
+                    callDataArray.push(mainArray[k]);
+                    
+                    var test = JSON.stringify(mainArray);
+                  // console.log("hi"+test);
+                  
+                  
+                  
+                    if (Number(mainArray[k]["strike-price"]) < Number(mainArray[k]["spot-price"]))
+                    {
+                       
+                        
+                     var print = $('<tr class="highlight-yellow"><td>'+
+                        mainArray[k]["expiry-date"].slice(5,7) +'</td><td>'  + mainArray[k]["symbol-strike"].split(" ")[0] + '</td><td>'  + mainArray[k]["strike-price"] + '</td><td>' + mainArray[k]["spot-price"]  + '</td><td>'+ nfObject.format(mainArray[k]["volumes"]) + '</td><td>' + mainArray[k]["open-interest-change-percentage"] + '</td></tr>' );
+                            
+                    }
+                    
+                    else if(Number(mainArray[k]["open-interest-change-percentage"]) > 16 && time == 9){
+                        
+                    var print = $('<tr class="highlight-blue"><td>'+ mainArray[k]["expiry-date"].slice(5,7) +'</td><td>'  + mainArray[k]["symbol-strike"].split(" ")[0] + '</td><td>'  + mainArray[k]["strike-price"] +  '</td><td>' + mainArray[k]["spot-price"] + '</td><td>'+ nfObject.format(mainArray[k]["volumes"]) + '</td><td>' + mainArray[k]["open-interest-change-percentage"] + '</td></tr>');}
+                    
+                    
+                    
+                    else{
+                        
+                    var print = $('<tr><td>'+ mainArray[k]["expiry-date"].slice(5,7) +'</td><td>'  + mainArray[k]["symbol-strike"].split(" ")[0] + '</td><td>'  + mainArray[k]["strike-price"] +  '</td><td>' + mainArray[k]["spot-price"] + '</td><td>'+ nfObject.format(mainArray[k]["volumes"]) + '</td><td>' + mainArray[k]["open-interest-change-percentage"] + '</td></tr>');}
+                    $('#tableOne').append(print);
+                }
+            }
+            }
+            if(type == "put"){
+            
+            for (let l = 0; l < mainArray2.length; l++){
+                if(mainArray2[l]["symbol"] == getInput){
+                    putDataArray.push(mainArray2[l]);
+                    // console.log(putDataArray);
+                  
+                    if (Number(mainArray2[l]["strike-price"]) > Number(mainArray2[l]["spot-price"]))
+                    {
+                        
+                         var print = $('<tr class="highlight-yellow"><td>'+ mainArray2[l]["expiry-date"].slice(5,7)  +'</td><td>' + mainArray2[l]["symbol-strike"].split(" ")[0] + '</td><td>'  + mainArray2[l]["strike-price"] + '</td><td>' + mainArray2[l]["spot-price"] + '</td><td>'+ nfObject.format(mainArray2[l]["volumes"]) + '</td><td>' + mainArray2[l]["open-interest-change-percentage"] + '</td></tr>');}
+                         
+                     
+                    else if(Number(mainArray2[l]["open-interest-change-percentage"]) > 16 && time == 11){
+                        
+                    var print = $('<tr class="highlight-blue"><td>'+ mainArray2[l]["expiry-date"].slice(5,7) +'</td><td>'  + mainArray2[l]["symbol-strike"].split(" ")[0] + '</td><td>'  + mainArray2[l]["strike-price"] +  '</td><td>' + mainArray2[l]["spot-price"] + '</td><td>'+ nfObject.format(mainArray2[l]["volumes"]) + '</td><td>' + mainArray2[l]["open-interest-change-percentage"] + '</td></tr>');}
+                    
+                    
+                    else{
+                    var print = $('<tr><td>'+ mainArray2[l]["expiry-date"].slice(5,7)  +'</td><td>' + mainArray2[l]["symbol-strike"].split(" ")[0] + '</td><td>'  + mainArray2[l]["strike-price"] + '</td><td>' + mainArray2[l]["spot-price"] + '</td><td>' + nfObject.format(mainArray2[l]["volumes"]) + '</td><td>' + mainArray2[l]["open-interest-change-percentage"] + '</td></tr>');}
+                    $('#tableTwo').append(print);
+                }
+            }
+            }
+            
+            
+       }
+
+
+       function allDetails(e){
+        let uniqueFinalArr = arrayAllData;
+        for (let p = 0; p < uniqueFinalArr.length; p++){
+            if(uniqueFinalArr[p]["symbol"].includes(e)){
+                allDataArray.push(uniqueFinalArr[p]);
+                
+                var print = $('<tr><td>'+ uniqueFinalArr[p]["symbol-strike"] +'</td><td>' + uniqueFinalArr[p]["expiry-date"]+ '</td><td>' + uniqueFinalArr[p]["strike-price"] + '</td><td>' + uniqueFinalArr[p]["spot-price"] + '</td><td>' + uniqueFinalArr[p]["open-interest"]+'</td><td>' + uniqueFinalArr[p]["open-interest-in-contracts"]+'</td><td>' + uniqueFinalArr[p]["open-interest-change"]+'</td><td>'+ uniqueFinalArr[p]["open-interest-change-percentage"]+'</td><td>'+ uniqueFinalArr[p]["underlying-value"]+'</td><td>'+ nfObject.format(uniqueFinalArr[p]["volumes"])+'</td><td>' + nfObject.format(uniqueFinalArr[p]["volumes-in-contracts"])+'</td><td>' + uniqueFinalArr[p]["open-interest-turnover"]+'</td><td>' + uniqueFinalArr[p]["notional-turnover"]+'</td><td>' + uniqueFinalArr[p]["premium"]+'</td><td>' + uniqueFinalArr[p]["premium-turnover"]+'</td><td>' + uniqueFinalArr[p]["symbol"]+'</td><td>' + uniqueFinalArr[p]["type"]+'</td></tr>');
+                $('#tableThree').append(print);
+            }
+        }
+       }
+
+
+       
+
+
+       let showDataArry = [];
+
+       function showClickData(){
+            // console.log(arrayAllData);
+            
+           
+            
+         $('#clickData').html("");
+        $('#VolumeStocks').html("");
+        $('#VolumeStocks').html("<tr><th>Month</th><th>Symbol</th><th>Strike</th><th>Type</th><th>Spot price</th><th>OI</th><th>OI change</th><th>OI change %</th><th>Volumes</th></tr>");
+        $('#VolumeCStocks').html("");
+        $('#VolumeCStocks').html("<tr><th>Month</th><th>Symbol</th><th>Strike</th><th>Type</th><th>Spot price</th><th>OI</br>(in contracts)</th><th>OI change</th><th>OI change %</th><th>Volumes</br>(in contracts)</th></tr>");
+     
+         
+           arrayAllData.sort(function(a, b){
+                   var x = a["volumes-in-contracts"]; var y = b["volumes-in-contracts"];
+                    return ((x > y) ? -1 : ((x < y) ? 1 : 0));
+                     
+                });
+          
+         
+         for (let y = 0; y < 24; y++){
+               
+                   if (Math.abs(arrayAllData[y]["open-interest-change-percentage"]) > 60 )
+                    {
+                       
+                       
+                              var print = $('<tr class="highlight-yellow"><td>' + arrayAllData[y]["expiry-date"].slice(5,7) + '</td><td>' + arrayAllData[y]["symbol-strike"].split(" ")[0] +  '</td><td>' + arrayAllData[y]["strike-price"] + '</td><td>' + arrayAllData[y]["type"]+'</td><td>' + arrayAllData[y]["spot-price"]+'</td><td>' + arrayAllData[y]["open-interest-in-contracts"]+'</td><td>' + arrayAllData[y]["open-interest-change"]+'</td><td>'+ arrayAllData[y]["open-interest-change-percentage"] + '</td><td>'+ nfObject.format(arrayAllData[y]["volumes-in-contracts"]) +'</td></tr>');
+                        
+                    
+                    $('#VolumeCStocks').append(print);
+                    
+                    }
+                    
+                   
+                    
+                   
+                   
+                
+                }
+         
+         
+         
+           arrayAllData.sort(function(a, b){
+                   var x = a["volumes"]; var y = b["volumes"];
+                    return ((x > y) ? -1 : ((x < y) ? 1 : 0));
+                     
+                });
+                
+                var volume_count = 0;
+                var ev = "RELIANCE";
+                
+                for (let y = 0; y < 24; y++){
+               
+                    if (Math.abs(arrayAllData[y]["open-interest-change-percentage"]) >= 100)
+                    {
+               
+                    // console.log(showDataArry);
+                    var print = $('<tr class="highlight-blue"><td>' + arrayAllData[y]["expiry-date"].slice(5,7) + '</td><td>' + arrayAllData[y]["symbol-strike"].split(" ")[0] +  '</td><td>' + arrayAllData[y]["strike-price"] + '</td><td>' + arrayAllData[y]["type"]+'</td><td>' + arrayAllData[y]["spot-price"]+'</td><td>' + arrayAllData[y]["open-interest"]+'</td><td>' + arrayAllData[y]["open-interest-change"]+'</td><td>'+ arrayAllData[y]["open-interest-change-percentage"] + '</td><td>'+ nfObject.format(arrayAllData[y]["volumes"]) +'</td></tr>');
+                    $('#VolumeStocks').append(print);
+                    
+                    }
+                    
+                    else if (Math.abs(arrayAllData[y]["open-interest-change-percentage"]) > 16 && Math.abs(arrayAllData[y]["open-interest-change-percentage"]) <= 99  )
+                    {
+                       
+                       
+                              var print = $('<tr class="highlight-yellow"><td>' + arrayAllData[y]["expiry-date"].slice(5,7) + '</td><td>' + arrayAllData[y]["symbol-strike"].split(" ")[0] +  '</td><td>' + arrayAllData[y]["strike-price"] + '</td><td>' + arrayAllData[y]["type"]+'</td><td>' + arrayAllData[y]["spot-price"]+'</td><td>' + arrayAllData[y]["open-interest"]+'</td><td>' + arrayAllData[y]["open-interest-change"]+'</td><td>'+ arrayAllData[y]["open-interest-change-percentage"] + '</td><td>'+ nfObject.format(arrayAllData[y]["volumes"]) +'</td></tr>');
+                        
+                    
+                    $('#VolumeStocks').append(print);
+                    
+                    }
+                    
+                   
+                    
+                   
+                   
+                
+                }
+           
+            
+                 $('.reliance').html("");
+                  $('#RelianceOne').html("<tr><th>Month</th><th>Strike</th><th>Type</th><th>Open Interests</br>(in contracts)</th><th>OI change</th><th>OI %</th><th>Volumes</br>(in contracts)</th></tr>");
+                 $('#RelianceTwo').html("<tr><th>Month</th><th>Strike</th><th>Type</th><th>Open Interests</th><th>OI change</th><th>OI %</th><th>Volumes</th></tr>");
+               
+                
+                for (let y = 0; y < arrayAllData.length; y++){
+                if(arrayAllData[y]["symbol"].includes(ev)){
+                    showDataArry.push(arrayAllData[y]);
+                    // console.log(showDataArry);
+                    var print = $('<tr><td>'+ arrayAllData[y]["expiry-date"].slice(5,7) + '</td><td>' + arrayAllData[y]["strike-price"] + '</td><td>' + arrayAllData[y]["type"]+'</td><td>' + nfObject.format(arrayAllData[y]["open-interest-in-contracts"])+'</td><td>' + arrayAllData[y]["open-interest-change"]+'</td><td>'+ arrayAllData[y]["open-interest-change-percentage"] + '</td><td>'+ nfObject.format(arrayAllData[y]["volumes-in-contracts"]) +'</td></tr>');
+                    $('#RelianceOne').append(print);
+                    $('.reliance-spot').html(arrayAllData[y]["spot-price"]);
+                }
+                }
+                
+              
+                
+                arrayAllData.sort(function(a, b){
+                   var x = a["open-interest"]; var y = b["open-interest"];
+                    return ((x > y) ? -1 : ((x < y) ? 1 : 0));
+                     
+                });
+                
+                for (let y = 0; y < arrayAllData.length; y++){
+                if(arrayAllData[y]["symbol"].includes(ev)){
+                    showDataArry.push(arrayAllData[y]);
+                    // console.log(showDataArry);
+                    var print = $('<tr><td>'+ arrayAllData[y]["expiry-date"].slice(5,7) + '</td><td>' + arrayAllData[y]["strike-price"] + '</td><td>' + arrayAllData[y]["type"]+'</td><td>' + nfObject.format(arrayAllData[y]["open-interest"])+'</td><td>' + arrayAllData[y]["open-interest-change"]+'</td><td>'+ arrayAllData[y]["open-interest-change-percentage"] + '</td><td>'+ nfObject.format(arrayAllData[y]["volumes"])+'</td></tr>');
+                    $('#RelianceTwo').append(print);
+                     
+                   
+                }
+                }
+               
+                 $('.hdfcbank').html("");
+                 $('#HdfcOne').html("<tr><th>Month</th><th>Strike</th><th>Type</th><th>Open Interests</br>(in contracts)</th><th>OI change</th><th>OI %</th><th>Volumes</br>(in contracts)</th></tr>");
+                $('#HdfcTwo').html("<tr><th>Month</th><th>Strike</th><th>Type</th><th>Open Interests</th><th>OI change</th><th>OI %</th><th>Volumes</th></tr>");
+               
+                var ev = "HDFCBANK";
+          
+               
+                for (let y = 0; y < arrayAllData.length; y++){
+                if(arrayAllData[y]["symbol"].includes(ev)){
+                    showDataArry.push(arrayAllData[y]);
+                    // console.log(showDataArry);
+                    var print = $('<tr><td>'+ arrayAllData[y]["expiry-date"].slice(5,7) + '</td><td>' + arrayAllData[y]["strike-price"] + '</td><td>' + arrayAllData[y]["type"]+'</td><td>' + nfObject.format(arrayAllData[y]["open-interest-in-contracts"])+'</td><td>' + arrayAllData[y]["open-interest-change"]+'</td><td>'+ arrayAllData[y]["open-interest-change-percentage"] + '</td><td>'+ nfObject.format(arrayAllData[y]["volumes-in-contracts"])+'</td></tr>');
+                    $('#HdfcOne').append(print);
+                   $('.hdfc-spot').html(arrayAllData[y]["spot-price"]);
+                }
+                }
+               
+                   
+                  arrayAllData.sort(function(a, b){
+                   var x = a["open-interest"]; var y = b["open-interest"];
+                    return ((x > y) ? -1 : ((x < y) ? 1 : 0));
+                     
+                });
+                
+                 for (let y = 0; y < arrayAllData.length; y++){
+                if(arrayAllData[y]["symbol"].includes(ev)){
+                    showDataArry.push(arrayAllData[y]);
+                    // console.log(showDataArry);
+                    var print = $('<tr><td>'+ arrayAllData[y]["expiry-date"].slice(5,7) + '</td><td>' + arrayAllData[y]["strike-price"] + '</td><td>' + arrayAllData[y]["type"]+'</td><td>' + nfObject.format(arrayAllData[y]["open-interest"]) +'</td><td>' + arrayAllData[y]["open-interest-change"]+'</td><td>'+ arrayAllData[y]["open-interest-change-percentage"] + '</td><td>'+ nfObject.format(arrayAllData[y]["volumes"])+'</td></tr>');
+                    $('#HdfcTwo').append(print);
+                   
+                }
+                }
+            
+        
+       }
+
+
+
+
+    
+    </script>
+</body>
+</html>
